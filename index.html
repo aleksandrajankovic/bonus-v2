@@ -1285,33 +1285,24 @@
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const path = window.location.pathname;
-        console.log(path);
+        const query = window.location.search || "";
 
-        const segments = path.split("/").filter(Boolean);
-        console.log(segments);
+        const baseRegistracija = "https://meridianbet.rs/sr/registracija";
+        const baseKladjenje = "https://meridianbet.rs/sr/kladjenje";
 
-        const tail = segments.length > 1 ? segments[segments.length - 1] : "";
-        console.log(tail);
-        const origin = window.location.origin; // "https://meridianbet.rs"
-        console.log(origin);
-
-        const registracijaUrl = tail
-          ? `https://meridianbet.rs/sr/registracija/${tail}`
-          : `https://meridianbet.rs/sr/registracija`;
-        const kladjenjeUrl = tail
-          ? `https://meridianbet.rs/sr/kladjenje/${tail}`
-          : `https://meridianbet.rs/sr/kladjenje`;
+        const registracijaHref = baseRegistracija + query;
+        const kladjenjeHref = baseKladjenje + query;
 
         document.querySelectorAll(".join-now").forEach((a) => {
-          a.setAttribute("href", registracijaUrl);
-        });
-        document.querySelectorAll(".home").forEach((a) => {
-          a.setAttribute("href", kladjenjeUrl);
+          a.setAttribute("href", registracijaHref);
         });
 
-        console.log("Registracija href:", registracijaUrl);
-        console.log("Kladjenje href:", kladjenjeUrl);
+        document.querySelectorAll(".home").forEach((a) => {
+          a.setAttribute("href", kladjenjeHref);
+        });
+
+        console.log("join‑now", registracijaHref);
+        console.log("home ", kladjenjeHref);
       });
     </script>
     <script src="./assets/main.js"></script>
