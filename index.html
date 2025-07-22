@@ -245,7 +245,6 @@
           <span class="uppercase">Pravila promocije</span>
         </a>
       </div>
-   
     </section>
 
     <!-- DESKTOP HERO WITH TRANSPARENT HEADER -->
@@ -343,8 +342,6 @@
               <span class="uppercase">Pravila promocije</span>
             </a>
           </div>
-
-         
         </div>
         <!-- right video 40% -->
         <div class="md:w-2/5 flex justify-center items-center z-[-1]">
@@ -494,7 +491,6 @@
           </div>
         </div>
       </section>
-
 
       <!-- WHY US -->
       <section class="px-3 py-7">
@@ -813,7 +809,9 @@
             ></div>
 
             <!-- tekst -->
-            <span class="btn-text relative z-10 font-gothic leading-normal small-font">
+            <span
+              class="btn-text relative z-10 font-gothic leading-normal small-font"
+            >
               KRENI ODMAH!
             </span>
           </a>
@@ -851,7 +849,6 @@
       <div
         class="relative bg-[#16232A] rounded-lg p-8 max-w-screen-2xl mx-auto border border-[#2E5465] rounded-[10px] p-[40px]"
       >
-       
         <div
           id="textContainer"
           class="relative overflow-hidden max-h-48 text-collapse"
@@ -887,7 +884,6 @@
             </span>
           </p>
 
-    
           <div
             id="fadeOverlay"
             class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#16232A] to-transparent fade-overlay"
@@ -1288,15 +1284,35 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script>
-      var pathArray = document.URL.split("/");
-      var secondLevelLocation = pathArray[5];
-      var newURL =
-        "https://meridianbet.rs/sr/registracija" + secondLevelLocation;
-      var homeURL = "https://meridianbet.rs/sr/kladjenje" + secondLevelLocation;
-      console.log(newURL);
-      console.log(homeURL);
-      $(".join-now").attr("href", newURL);
-      $(".home").attr("href", homeURL);
+      document.addEventListener("DOMContentLoaded", () => {
+        const path = window.location.pathname;
+        console.log(path);
+
+        const segments = path.split("/").filter(Boolean);
+        console.log(segments);
+
+        const tail = segments.length > 1 ? segments[segments.length - 1] : "";
+        console.log(tail);
+        const origin = window.location.origin; // "https://meridianbet.rs"
+        console.log(origin);
+
+        const registracijaUrl = tail
+          ? `https://meridianbet.rs/sr/registracija/${tail}`
+          : `https://meridianbet.rs/sr/registracija`;
+        const kladjenjeUrl = tail
+          ? `https://meridianbet.rs/sr/kladjenje/${tail}`
+          : `https://meridianbet.rs/sr/kladjenje`;
+
+        document.querySelectorAll(".join-now").forEach((a) => {
+          a.setAttribute("href", registracijaUrl);
+        });
+        document.querySelectorAll(".home").forEach((a) => {
+          a.setAttribute("href", kladjenjeUrl);
+        });
+
+        console.log("Registracija href:", registracijaUrl);
+        console.log("Kladjenje href:", kladjenjeUrl);
+      });
     </script>
     <script src="./assets/main.js"></script>
   </body>
